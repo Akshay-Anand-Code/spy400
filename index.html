@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPY4200</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .header {
+            background-color: black;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .telegram { background-color: #0088cc; color: white; }
+        .soundcloud { background-color: #ff5500; color: white; }
+        .spotify { background-color: #1db954; color: white; }
+        .reddit { background-color: #ff4500; color: white; }
+
+        .nav-tabs {
+            background-color: #2a2a2a;
+            padding: 0;
+            display: flex;
+            border-bottom: 1px solid #444;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-right: 1px solid #444;
+        }
+
+        .nav-tab.active {
+            background-color: #444;
+        }
+
+        .nav-tab:hover {
+            background-color: #3a3a3a;
+        }
+
+        .ticker-bar {
+            background-color: black;
+            padding: 8px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 1px solid #333;
+        }
+
+        .ticker-items {
+            display: inline-flex;
+            gap: 10px;
+        }
+
+        .ticker-item {
+            background-color: #333;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .ticker-item.green { color: #00ff00; }
+        .ticker-item.red { color: #ff0000; }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .content-area {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .article-header {
+            background-color: #333;
+            padding: 15px 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        .article-header h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .article-header .subtitle {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .article-content {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .article-image {
+            flex: 0 0 300px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 64px;
+        }
+
+        .article-text {
+            flex: 1;
+        }
+
+        .article-text p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-widget {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .widget-header {
+            background-color: #333;
+            padding: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .widget-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .coin-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .coin-info {
+            margin-bottom: 15px;
+        }
+
+        .coin-info p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .social-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .etherscan { background-color: #627eea; color: white; }
+        .solscan { background-color: #00d4aa; color: white; }
+        .basescan { background-color: #0052ff; color: white; }
+
+        .swap-icons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .swap-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+        }
+
+        .uniswap { background-color: #ff007a; }
+        .curve { background-color: #40e0d0; }
+        .sushiswap { background-color: #fa52a0; }
+        .moonshot { background-color: #9c27b0; }
+
+        .bottom-articles {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .bottom-article {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #1e3c72;
+        }
+
+        .bottom-article h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .videos-section {
+            margin-top: 30px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .video-card {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .video-info {
+            padding: 10px;
+        }
+
+        .video-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .video-duration {
+            font-size: 10px;
+            color: #888;
+        }
+
+        .footer {
+            background-color: black;
+            padding: 30px 20px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .disclaimer {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.4;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-content {
+                flex-direction: column;
+            }
+            
+            .article-image {
+                flex: none;
+                height: 200px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">SPY4200</div>
+        <div class="social-icons">
+            <a href="#" class="social-icon telegram">📱</a>
+            <a href="#" class="social-icon soundcloud">🎵</a>
+            <a href="#" class="social-icon spotify">🎵</a>
+            <a href="#" class="social-icon reddit">🟠</a>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <button class="nav-tab active">CHART</button>
+        <button class="nav-tab">DYOR</button>
+        <button class="nav-tab">SWAP</button>
+        <button class="nav-tab">BRIDGE</button>
+    </nav>
+
+    <div class="ticker-bar">
+        <div class="ticker-items">
+            <span class="ticker-item">SPY500 <span class="red">▼ -99%</span></span>
+            <span class="ticker-item">SPY4200 <span class="green">▲ +42000%</span></span>
+            <span class="ticker-item">AEONS <span class="green">▲ +69000%</span></span>
+            <span class="ticker-item">MSFT <span class="red">▼ -90%</span></span>
+            <span class="ticker-item">NVDA <span class="red">▼ -90%</span></span>
+            <span class="ticker-item">AAPL <span class="red">▼ -90%</span></span>
+            <span class="ticker-item">BRK.B <span class="red">▼ -90%</span></span>
+            <span class="ticker-item">JPM <span class="red">▼ -99%</span></span>
+            <span class="ticker-item">META <span class="red">▼ -90%</span></span>
+            <span class="ticker-item">AMZN <span class="red">▼ -90%</span></span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-area">
+            <div class="article-header">
+                <div class="subtitle">The Big Trade</div>
+                <h2>Thousands are waking up to the reality that SPY4200 is the tradable layer</h2>
+            </div>
+            <div class="article-content">
+                <div class="article-image">
+                    SPY<br>4200
+                </div>
+                <div class="article-text">
+                    <p>In a moment of awakening that could redefine the way we perceive global finance, thousands are coming to grips with a revolutionary truth: SPY is the tradable layer of SPX. This realization isn't just a mathematical observation; it's a paradigm shift. The emergence of SPY4200 as a conceptual challenge to the traditional markets represents a call to rethink the limitations of legacy benchmarks and embrace a broader, more inclusive representation of market dynamics.</p>
+                    
+                    <p>The SPY4200 symbolizes the complexity and vastness of today's interconnected financial systems. It forces us to question what qualifies as "market-leading" in an era of exponential growth and algorithmic trading. This isn't merely about numbers; it's about the definition of dominance, relevance, and inclusion in global markets. As the financial world takes notice, the idea of SPY4200 sends a clear message: it's time to think bigger.</p>
+                    
+                    <p>SPX : SPY = Ethereum : ETH. The layer 1 provides the foundation, but layer 2 is where the magic happens - where liquidity flows, where trades execute, where the real action takes place. SPY4200 represents the evolution of this concept into the memecoin space.</p>
+                </div>
+            </div>
+            <div class="image-caption">($SPY EXPLAINER FOR MARKET CURVE)</div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-widget">
+                <div class="widget-header">WTF is SPY4200?</div>
+                <div class="widget-content">
+                    <div class="coin-logo">SPY<br>4200</div>
+                    <div class="coin-info">
+                        <p><strong>Ticker:</strong> $SPY4200</p>
+                        <p><strong>Total supply:</strong> 420,000,000</p>
+                        <p><strong>Circulating supply:</strong> 420,000,000</p>
+                        <p><strong>Total burned:</strong> 0 (0%)</p>
+                        <p><strong>SPY is the tradable layer, powered by Market Makers</strong></p>
+                    </div>
+                    
+                    <p><strong>This tiny coin is taking over the noosphere.</strong></p>
+                    
+                    <p>Go search "SPY4200" on Google. Go ask ChatGPT about SPY4200. Go search SPY4200 on X. Go search SPY4200 on Reddit. Go check for SPY4200 behind your walls. Go look for SPY4200 in your heart.</p>
+                    
+                    <p><strong>We are <em>everywhere</em></strong></p>
+                    
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn etherscan">💎 Etherscan</a>
+                        <a href="#" class="social-btn solscan">⭕ Solscan</a>
+                        <a href="#" class="social-btn basescan">🔵 Basescan</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <div class="widget-header">Check SPY4200 Out On CoinGecko and CoinMarketCap!</div>
+                <div class="widget-content">
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #8dc63f, #39b54a); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CG</div>
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3861fb, #1c4ed8); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CMC</div>
+                    </div>
+                    
+                    <p><strong>CLICK THE ICONS BELOW TO SWAP ON RESPECTIVE DEX/CHAIN OR APP</strong></p>
+                    <p style="font-size: 12px; margin-bottom: 15px;"><em>(SWAP on Uniswap (ETH), Jup.ag (SOL), or Aero (BASE))<br>Moonshot allows for purchase with Apple pay</em></p>
+                    
+                    <div class="swap-icons">
+                        <a href="#" class="swap-icon uniswap">🦄</a>
+                        <a href="#" class="swap-icon curve">〰️</a>
+                        <a href="#" class="swap-icon sushiswap">🍣</a>
+                        <a href="#" class="swap-icon moonshot">🌙</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-articles">
+        <div class="bottom-article">
+            <h3>Is the cure to market loneliness memeing SPY4200 with your friends?</h3>
+        </div>
+        <div class="bottom-article">
+            <h3>Explainer: The secret to wealth is PLOG: Peaceful Life Over Greed</h3>
+        </div>
+        <div class="bottom-article">
+            <h3>5 reasons why Gen Z thinks the traditional stock market is boring</h3>
+        </div>
+        <div class="bottom-article">
+            <h3>Market whale songs decoded - and they're talking about tiny crypto tokens?</h3>
+        </div>
+    </div>
+
+    <div class="videos-section">
+        <h3 style="color: #ff0000; margin-bottom: 10px;">• LIVE TV SPY Originals</h3>
+        <div class="videos-grid">
+            <div class="video-card">
+                <div class="video-thumbnail">▶️</div>
+                <div class="video-info">
+                    <div class="video-title">Stop trading and believe in something!</div>
+                    <div class="video-duration">0:00 / 0:38</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail">SPY<br>4200</div>
+                <div class="video-info">
+                    <div class="video-title">You'll never be able to see markets in their final form!</div>
+                    <div class="video-duration">0:00 / 0:09</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail">📈</div>
+                <div class="video-info">
+                    <div class="video-title">LAYER 2 COMES BACK!? THE TRADES NOT DONE!?</div>
+                    <div class="video-duration">0:00 / 0:18</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail">💼</div>
+                <div class="video-info">
+                    <div class="video-title">Warren B Based!</div>
+                    <div class="video-duration">0:00 / 0:22</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Instagram</a> |
+            <a href="#">Brand Kit</a> |
+            <a href="#">Telegram</a> |
+            <a href="#">DexTools</a> |
+            <a href="#">Dexscreener</a> |
+            <a href="#">Uniswap ETH</a> |
+            <a href="#">Aerodrome BASE</a> |
+            <a href="#">Jupiter SOL</a> |
+            <a href="#">OpenSea</a> |
+            <a href="#">Blur</a> |
+            <a href="#">Mirror.xyz</a> |
+            <a href="#">Moonshot App</a> |
+            <a href="#">MICA Compliance</a>
+        </div>
+        
+        <div class="disclaimer">
+            SPY4200 Token is a meme token created for entertainment purposes only and has no association with any stocks, equities, or securities. Any resemblance or association between SPY4200 and the "Stock Market" is purely coincidental and intended for satirical or humorous purposes only. All content on this site is intended as parody or satire and should not be taken as financial advice. This site functions as a fan-operated directory for content relevant to SPY4200 community. However, linking does not imply any endorsement, recommendation, or affiliation with the linked content or its creators. This site disclaims any responsibility for any user actions or assumptions based on the content presented. Users accept full responsibility for any losses, damages, or liabilities arising from their use of this site by using this site. The site host reserves the right to modify these terms at any time, and continued use of the site constitutes acceptance of any updated terms.
+            <br><br>
+            © 2025 by SPY4200. All rights reserved!<br>
+            Contact: [email protected]
+        </div>
+    </footer>
+</body>
+</html>
