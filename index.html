@@ -124,8 +124,8 @@
             grid-template-columns: 1fr 300px;
             gap: 20px;
             padding: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
+            max-width: none;
+            margin: 0;
             background: none;
         }
 
@@ -170,6 +170,14 @@
             color: #111;
             font-size: 64px;
             font-weight: bold;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            max-width: 90%;
+            max-height: 90%;
+            display: block;
+            margin: 0 auto;
         }
 
         .article-text {
@@ -398,11 +406,11 @@
         .disclaimer {
             color: #bbb;
             font-size: 15px;
-            max-width: 1200px;
-            margin: 0 auto 20px auto;
+            max-width: none;
+            margin: 0 40px 20px 40px;
             text-align: left;
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 0;
+            padding-right: 0;
         }
         .footer-bottom {
             display: flex;
@@ -454,6 +462,142 @@
             display: block;
             margin: 8px 0 8px 0;
         }
+        .meme-news-gallery {
+            max-width: none;
+            margin: 40px 20px;
+            padding: 20px;
+        }
+        .meme-news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+        .meme-news-card {
+            background: #fff;
+            border: 2px solid #b5c2b7;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0 0 18px 0;
+            transition: box-shadow 0.2s;
+        }
+        .meme-news-card:hover {
+            box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+        }
+        .meme-news-card img {
+            width: 100%;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            object-fit: cover;
+            height: 180px;
+        }
+        .meme-news-headline {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 16px 16px 8px 16px;
+            color: #222;
+        }
+        .meme-news-caption {
+            font-size: 0.95rem;
+            color: #888;
+            margin: 0 16px;
+        }
+        .meme-news-rectangle {
+            max-width: none;
+            margin: 40px 20px;
+            padding: 32px 24px;
+            background: #fff;
+            border: 2.5px solid #b5c2b7;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+        .meme-rect-image {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            max-height: 320px;
+        }
+        .meme-rect-headline {
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin: 18px 0 8px 0;
+            color: #222;
+        }
+        .meme-rect-caption {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .main-vertical-rectangle {
+            max-width: none;
+            margin: 0 20px;
+            padding: 24px 20px;
+            background: #fff;
+            border: 1.5px solid #b5c2b7;
+            border-radius: 0;
+            box-shadow: none;
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
+        .main-vertical-left {
+            flex: 2;
+            min-width: 0;
+        }
+        .main-vertical-right {
+            flex: 1;
+            min-width: 260px;
+            max-width: 420px;
+            background: #f9fafb;
+            border-left: 2px solid #b5c2b7;
+            padding: 24px 18px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .genz-news-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        .genz-news-article {
+            margin-bottom: 32px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 18px;
+        }
+        .genz-news-headline {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .genz-news-summary {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .genz-news-link {
+            color: #27ae60;
+            font-size: 0.95rem;
+            text-decoration: underline;
+        }
+        .genz-news-link:hover {
+            color: #ffd700;
+        }
+        .content-area {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -491,13 +635,17 @@
 
     <div class="main-content">
         <div class="content-area">
+            <video id="mainVideo" controls autoplay muted style="width:100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); margin-bottom: 20px;">
+                <source src="public/spy400.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <div class="article-header">
                 <div class="subtitle">The Big Trade</div>
                 <h2>Thousands are waking up to the reality that SPY4200 is the tradable layer</h2>
             </div>
             <div class="article-content">
                 <div class="article-image">
-                    SPY<br>4200
+                    <img src="public/logo.PNG" alt="SPY4200 Logo" />
                 </div>
                 <div class="article-text">
                     <p>In a moment of awakening that could redefine the way we perceive global finance, thousands are coming to grips with a revolutionary truth: SPY is the tradable layer of SPX. This realization isn't just a mathematical observation; it's a paradigm shift. The emergence of SPY4200 as a conceptual challenge to the traditional markets represents a call to rethink the limitations of legacy benchmarks and embrace a broader, more inclusive representation of market dynamics.</p>
@@ -637,108 +785,110 @@
         </div>
     </div>
 
-    <div class="bottom-articles">
-        <div class="bottom-article">
-            <h3>Is the cure to market loneliness memeing SPY4200 with your friends?</h3>
+    <!-- Unified Main Rectangle Section -->
+    <div class="main-vertical-rectangle" style="max-width:none; margin:40px 20px 0 20px; align-items: flex-start;">
+      <div class="main-vertical-left">
+      <div style="width: 100%;">
+        <div class="article-header">
+          <div class="subtitle">The Big Trade</div>
+          <h2>Thousands are waking up to the reality that SPY4200 is the tradable layer</h2>
         </div>
-        <div class="bottom-article">
-            <h3>Explainer: The secret to wealth is PLOG: Peaceful Life Over Greed</h3>
+        <div class="article-content">
+          <div class="article-image">
+              <img src="public/logo.PNG" alt="SPY4200 Logo" />
+          </div>
+          <div class="article-text">
+            <p>In a moment of awakening that could redefine the way we perceive global finance, thousands are coming to grips with a revolutionary truth: SPY is the tradable layer of SPX. This realization isn't just a mathematical observation; it's a paradigm shift. The emergence of SPY4200 as a conceptual challenge to the traditional markets represents a call to rethink the limitations of legacy benchmarks and embrace a broader, more inclusive representation of market dynamics.</p>
+            <span class="quote">&gt; SPY4200 is the memetic layer for the new market age.</span>
+            <p>The SPY4200 symbolizes the complexity and vastness of today's interconnected financial systems. It forces us to question what qualifies as "market-leading" in an era of exponential growth and algorithmic trading. This isn't merely about numbers; it's about the definition of dominance, relevance, and inclusion in global markets. As the financial world takes notice, the idea of SPY4200 sends a clear message: it's time to think bigger.</p>
+            <p>SPX : SPY = Ethereum : ETH. The layer 1 provides the foundation, but layer 2 is where the magic happens - where liquidity flows, where trades execute, where the real action takes place. SPY4200 represents the evolution of this concept into the memecoin space.</p>
+          </div>
         </div>
-        <div class="bottom-article">
-            <h3>5 reasons why Gen Z thinks the traditional stock market is boring</h3>
+        <div class="image-caption">($SPY EXPLAINER FOR MARKET CURVE)</div>
+      </div>
+      <!-- Meme/News Content -->
+        <div class="meme-rect-meme">
+        <img class="meme-rect-image" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Stonks_meme.png" alt="Stonks meme" />
+          <div class="meme-rect-headline">When you buy the dip and it keeps dipping.</div>
+        <div class="meme-rect-caption">[source: Wikimedia Commons]</div>
+      </div>
+        <div class="meme-rect-meme">
+        <img class="meme-rect-image" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/This_is_fine_meme.png" alt="This is fine dog meme" />
+          <div class="meme-rect-headline">Portfolio down 90%, but vibes are up.</div>
+        <div class="meme-rect-caption">[source: Wikimedia Commons]</div>
+      </div>
+        <div class="meme-rect-meme">
+        <img class="meme-rect-image" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Pepe_the_Frog.png" alt="Pepe the Frog meme" />
+        <div class="meme-rect-headline">Are ya winning, dad?</div>
+        <div class="meme-rect-caption">[source: Wikimedia Commons]</div>
+      </div>
+        <div class="meme-rect-meme">
+          <img class="meme-rect-image" src="https://i.kym-cdn.com/entries/icons/original/000/023/524/distracted_boyfriend_meme.jpg" alt="Distracted Boyfriend meme" />
+          <div class="meme-rect-headline">Me: My long-term portfolio. Also me: That new meme coin.</div>
+          <div class="meme-rect-caption">[source: KnowYourMeme]</div>
         </div>
-        <div class="bottom-article">
-            <h3>Market whale songs decoded - and they're talking about tiny crypto tokens?</h3>
+        <div class="meme-rect-meme">
+          <img class="meme-rect-image" src="https://i.kym-cdn.com/entries/icons/original/000/021/403/expandingbrain-1.jpg" alt="Expanding Brain meme" />
+          <div class="meme-rect-headline">Buy high, sell low, meme about it.</div>
+          <div class="meme-rect-caption">[source: KnowYourMeme]</div>
+        </div>
+      </div>
+      <aside class="main-vertical-right">
+        <div class="genz-news-title">Gen Z Trading News</div>
+        <div class="genz-news-article">
+          <div class="genz-news-headline">Gen Z day traders are using astrology and tarot to pick stocks—and some say it's working!</div>
+          <div class="genz-news-summary">Gen Z traders are turning to astrology, tarot, and "vibes" to guide their stock picks, with some claiming big wins. Experts warn: don't bet your portfolio on the stars.</div>
+          <a class="genz-news-link" href="https://fortune.com/2024/06/16/gen-z-stocks-tarot-astrology-day-trade/" target="_blank">Read more at Fortune</a>
+        </div>
+        <div class="genz-news-article">
+          <div class="genz-news-headline">While boomers panic, Gen Z sees a market crash as a $42K opportunity</div>
+          <div class="genz-news-summary">As markets tumbled, Gen Z investors took to TikTok to celebrate "stocks on sale"—with some making tens of thousands in a single hour. Their secret? Buy the dip, trust the process, and meme about it.</div>
+          <a class="genz-news-link" href="https://fortune.com/2025/04/13/baby-boomers-despaired-crashing-markets-economy-gen-z-get-rich-trump-tariffs-early-retirement-entire-stock-market-is-on-sale/" target="_blank">Read more at Fortune</a>
+        </div>
+        <div class="genz-news-article">
+          <div class="genz-news-headline">Teens ask ChatGPT for stock tips, then YOLO into Tesla</div>
+          <div class="genz-news-summary">Some Gen Z traders are using AI like ChatGPT for stock advice, then making bold trades—sometimes with hilarious results. "It said 'maybe' so I bought 10 shares."</div>
+          <a class="genz-news-link" href="https://www.vice.com/" target="_blank">Read more at Vice</a>
+        </div>
+        <div class="genz-news-article">
+          <div class="genz-news-headline">Gen Z turns to TikTok for financial advice, not school</div>
+          <div class="genz-news-summary">Forget textbooks—Gen Z is learning to invest from TikTok influencers, with viral videos teaching everything from crypto to meme stocks at 3am.</div>
+          <a class="genz-news-link" href="https://www.vice.com/" target="_blank">Read more at Vice</a>
+        </div>
+        <div class="genz-news-article">
+          <div class="genz-news-headline">Gen Z traders: 'Buy the dip, trust the vibes'</div>
+          <div class="genz-news-summary">Astrology, lunar cycles, and "good vibes" are the new investing strategies for some Gen Z traders. "I tend to long the full moon and short the new moon."</div>
+          <a class="genz-news-link" href="https://www.businessinsider.com/astrology-stock-market-trading-gen-z-retail-investors-2024-6" target="_blank">Read more at Business Insider</a>
+        </div>
+        <div class="genz-news-article">
+          <div class="genz-news-headline">Gen Z's new investing strategy: consult the stars, not Wall Street</div>
+          <div class="genz-news-summary">For a growing number of young investors, the best stock tips come from the universe—not Wall Street. Tarot cards and planetary alignments are in, old-school brokers are out.</div>
+          <a class="genz-news-link" href="https://www.businessinsider.com/astrology-stock-market-trading-gen-z-retail-investors-2024-6" target="_blank">Read more at Business Insider</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Gen Z Investing Section -->
+    <div style="max-width: none; margin: 40px 20px 0 20px; padding: 20px;">
+        <h2 style="color: #27ae60; margin-bottom: 16px;">Gen Z Investing: The Meme Generation</h2>
+        <div style="background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 20px;">
+            <p><strong>Teens Are Using ChatGPT to Invest in the Stock Market</strong> <br>
+            "I just ask ChatGPT if I should buy Tesla. It said 'maybe' so I bought 10 shares."<br>
+            <span style="color:#888; font-size:12px;">[source: vice.com]</span></p>
+            <p><strong>Gen Z's Guide to Financial Literacy: Learn from TikTok, not school</strong> <br>
+            "My school didn't teach me taxes, but TikTok taught me how to buy crypto at 3am."</p>
         </div>
     </div>
 
-    <div class="videos-section">
-        <h3 style="color: #e74c3c; margin-bottom: 10px;">• LIVE TV SPY Originals</h3>
-        <div class="videos-grid">
-            <div class="video-card">
-                <div class="video-thumbnail">▶️</div>
-                <div class="video-info">
-                    <div class="video-title">Stop trading and believe in something!</div>
-                    <div class="video-duration">0:00 / 0:38</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">SPY<br>4200</div>
-                <div class="video-info">
-                    <div class="video-title">You'll never be able to see markets in their final form!</div>
-                    <div class="video-duration">0:00 / 0:09</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">📈</div>
-                <div class="video-info">
-                    <div class="video-title">LAYER 2 COMES BACK!? THE TRADES NOT DONE!?</div>
-                    <div class="video-duration">0:00 / 0:18</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">💼</div>
-                <div class="video-info">
-                    <div class="video-title">Warren B Based!</div>
-                    <div class="video-duration">0:00 / 0:22</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">🚀</div>
-                <div class="video-info">
-                    <div class="video-title">SPY4200: The Future of Meme Finance</div>
-                    <div class="video-duration">0:00 / 2:15</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">💰</div>
-                <div class="video-info">
-                    <div class="video-title">How to Spot the Next Big Memecoin</div>
-                    <div class="video-duration">0:00 / 1:45</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">🎯</div>
-                <div class="video-info">
-                    <div class="video-title">Market Psychology: Why SPY4200 Works</div>
-                    <div class="video-duration">0:00 / 3:22</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">🔥</div>
-                <div class="video-info">
-                    <div class="video-title">The Memecoin Revolution is Here</div>
-                    <div class="video-duration">0:00 / 1:58</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">⚡</div>
-                <div class="video-info">
-                    <div class="video-title">Lightning Round: SPY4200 Q&A</div>
-                    <div class="video-duration">0:00 / 4:12</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">🎪</div>
-                <div class="video-info">
-                    <div class="video-title">Behind the Scenes: SPY4200 Community</div>
-                    <div class="video-duration">0:00 / 2:45</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">🌙</div>
-                <div class="video-info">
-                    <div class="video-title">Moon Mission: SPY4200 Roadmap</div>
-                    <div class="video-duration">0:00 / 3:08</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumbnail">🎭</div>
-                <div class="video-info">
-                    <div class="video-title">The Art of Meme Trading</div>
-                    <div class="video-duration">0:00 / 2:33</div>
-                </div>
-            </div>
+    <!-- Funny Community Quotes Section -->
+    <div style="max-width: none; margin: 40px 20px 0 20px; padding: 20px;">
+        <h2 style="color: #ffd700; margin-bottom: 16px;">Funny Community Quotes</h2>
+        <div style="background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 20px;">
+            <ul style="font-size: 16px; line-height: 1.7;">
+                <li>"I'm not broke, I'm just pre-rich."</li>
+                <li>"My investment strategy: buy high, sell low, meme about it."</li>
+                <li>"If you can't handle me at my -90%, you don't deserve me at my +42000%."</li>
+            </ul>
         </div>
     </div>
 
@@ -770,5 +920,11 @@
             <div class="powered">Powered by Mayhem</div>
         </div>
     </footer>
+
+    <script>
+        const video = document.getElementById('mainVideo');
+        video.addEventListener('mouseenter', () => video.pause());
+        video.addEventListener('mouseleave', () => video.play());
+    </script>
 </body>
 </html>
