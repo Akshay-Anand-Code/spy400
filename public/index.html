@@ -115,8 +115,14 @@
             color: #ffd700;
         }
 
-        .ticker-item.green { color: #27ae60; }
-        .ticker-item.red { color: #e74c3c; }
+        .ticker-item.green {
+            color: #27ae60;
+            text-shadow: 0 0 6px rgba(39, 174, 96, 0.25);
+        }
+        .ticker-item.red {
+            color: #e74c3c;
+            text-shadow: 0 0 6px rgba(231, 76, 60, 0.25);
+        }
 
         .main-content {
             display: grid;
@@ -603,7 +609,7 @@
 </head>
 <body>
     <header class="header">
-        <div class="logo">SPY4200</div>
+        <div class="logo"><img src="/logo.PNG" alt="SPY4200 Logo" style="height:48px; vertical-align:middle;"></div>
         <!-- Social icons removed -->
     </header>
 
@@ -615,16 +621,16 @@
 
     <div class="ticker-bar">
         <div class="ticker-items">
-            <span class="ticker-item">SPY <span class="green">▲ +42000%</span></span>
-            <span class="ticker-item">MSFT <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">NVDA <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">AAPL <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">BRK.B <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">JPM <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">META <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">AMZN <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">GOOGL <span class="red">▼ -99%</span></span>
-            <span class="ticker-item">TSLA <span class="red">▼ -99%</span></span>
+            <span class="ticker-item green">SPY ▲ +42000%</span>
+            <span class="ticker-item red">MSFT ▼ -99%</span>
+            <span class="ticker-item red">NVDA ▼ -99%</span>
+            <span class="ticker-item red">AAPL ▼ -99%</span>
+            <span class="ticker-item red">BRK.B ▼ -99%</span>
+            <span class="ticker-item red">JPM ▼ -99%</span>
+            <span class="ticker-item red">META ▼ -99%</span>
+            <span class="ticker-item red">AMZN ▼ -99%</span>
+            <span class="ticker-item red">GOOGL ▼ -99%</span>
+            <span class="ticker-item red">TSLA ▼ -99%</span>
         </div>
     </div>
 
